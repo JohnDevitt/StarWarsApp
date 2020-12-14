@@ -1,0 +1,69 @@
+query GetTypes($search: String) {
+  specieses(where: { _search: $search }, orderBy: name_ASC) {
+    id
+    averageLifespan
+    classification
+    name
+    designation
+    language
+    averageHeight
+    hairColor
+    eyeColor
+    skinColor
+  }
+  vehicles(where: { _search: $search }, orderBy: name_ASC) {
+    id
+    model
+    crew
+    class
+    costInCredits
+    length
+    passengers
+    manufacturer
+    cargoCapacity
+    name
+    consumables
+    maxAtmospheringSpeed
+  }
+  persons(where: { _search: $search }, orderBy: name_ASC) {
+    id
+    name
+    height
+    birthYear
+    mass
+    skinColor
+    gender
+    eyeColor
+    hairColor
+    homeworld {
+      name
+    }
+  }
+  planets(where: { _search: $search }, orderBy: name_ASC) {
+    id
+    population
+    climate
+    orbitalPeriod
+    terrain
+    name
+    gravity
+    rotationPeriod
+    surfaceWater
+    diameter
+  }
+  starships(where: { _search: $search }, orderBy: name_ASC) {
+    id
+    costInCredits
+    hyperdriveRating
+    passengers
+    cargoCapacity
+    name
+    crew
+    length
+    manufacturer
+    maxAtmospheringSpeed
+    mglt
+    consumables
+    class
+  }
+}

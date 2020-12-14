@@ -1,6 +1,0 @@
-query GetStarships($search: String) {
-  starships(where: {_search: $search}) {
-    id
-    name
-  }
-}
