@@ -1,5 +1,6 @@
 import React from 'react'
 import { Text, View } from 'react-native'
+import { ListItem } from 'react-native-elements'
 import {
   GetStarshipsQuery,
   useGetStarshipsQuery,
@@ -14,7 +15,12 @@ const StarshipList = () => {
   return (
     <View>
       {data!.starships.map((ship: GetStarshipsQuery['starships'][number]) => (
-        <Text key={ship!.name}>{ship!.name}</Text>
+        <ListItem key={ship!.id} bottomDivider>
+          <ListItem.Content>
+            <ListItem.Title>{ship!.name}</ListItem.Title>
+            <ListItem.Subtitle>{'starship'}</ListItem.Subtitle>
+          </ListItem.Content>
+        </ListItem>
       ))}
     </View>
   )

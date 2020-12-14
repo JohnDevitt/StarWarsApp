@@ -4,6 +4,7 @@ import { registerRootComponent } from 'expo'
 import { StyleSheet, Text, View } from 'react-native'
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client'
 import StarshipList from './StarshipList'
+import { ThemeProvider } from 'react-native-elements'
 
 const client = new ApolloClient({
   uri: 'https://api-euwest.graphcms.com/v1/ck5wca13qc9ux01fgaidt12m4/master',
@@ -12,13 +13,13 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <View style={styles.container}>
-        <Text>Open up App.tsx to start working on your app!</Text>
-        <StarshipList />
-        <StatusBar style="auto" />
-      </View>
-    </ApolloProvider>
+    <ThemeProvider>
+      <ApolloProvider client={client}>
+        <View>
+          <StarshipList />
+        </View>
+      </ApolloProvider>
+    </ThemeProvider>
   )
 }
 
