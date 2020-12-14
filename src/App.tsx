@@ -1,10 +1,9 @@
-import { StatusBar } from 'expo-status-bar'
-import React from 'react'
+import React, { useState } from 'react'
 import { registerRootComponent } from 'expo'
-import { StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView } from 'react-native'
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client'
 import StarshipList from './StarshipList'
-import { ThemeProvider } from 'react-native-elements'
+import { ThemeProvider, SearchBar } from 'react-native-elements'
 
 const client = new ApolloClient({
   uri: 'https://api-euwest.graphcms.com/v1/ck5wca13qc9ux01fgaidt12m4/master',
@@ -12,24 +11,27 @@ const client = new ApolloClient({
 })
 
 function App() {
+  const [search, setSearch] = useState<string>('')
+
+  const updateSearch = (newSearch: string) => {
+    setSearch(newSearch)
+  }
+
   return (
     <ThemeProvider>
       <ApolloProvider client={client}>
-        <View>
-          <StarshipList />
-        </View>
+        <SafeAreaView>
+          <SearchBar
+            label="Search for a Star Wars type..."
+            placeholder="x-Fighter"
+            onChangeText={updateSearch}
+            value={search}
+          />
+          <StarshipList search={search} />
+        </SafeAreaView>
       </ApolloProvider>
     </ThemeProvider>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
 
 export default registerRootComponent(App)

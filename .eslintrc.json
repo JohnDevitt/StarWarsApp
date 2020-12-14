@@ -18,6 +18,8 @@
     "sourceType": "module"
   },
   "plugins": ["react", "@typescript-eslint"],
-  "ignorePatterns": ["src/grapqhql/generated/*"],
-  "rules": {}
+  "ignorePatterns": ["src/graphql/generated/*"],
+  "rules": {
+    "react/prop-types": "off"
+  }
 }
