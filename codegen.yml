@@ -1,0 +1,16 @@
+overwrite: true
+schema: "https://api-euwest.graphcms.com/v1/ck5wca13qc9ux01fgaidt12m4/master"
+documents: "src/graphql/**/*.graphql"
+generates:
+  src/graphql/generated/output.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+  src/graphql/generated/modules.d.ts:
+    plugins:
+      - "typescript-graphql-files-modules"
+      - "typescript-document-nodes"
+  src/graphql/generated/graphql.schema.json:
+    plugins:
+      - "introspection"

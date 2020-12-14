@@ -1,0 +1,6 @@
+query GetStarships {
+  starships {
+    id
+    name
+  }
+}
