@@ -1,6 +1,6 @@
 import React from 'react'
-import { Overlay, Button, Card } from 'react-native-elements'
-import { Text } from 'react-native'
+import { StyleSheet, View } from 'react-native'
+import { Overlay, Button, Text, Header } from 'react-native-elements'
 
 interface Props {
   id: string | undefined
@@ -9,27 +9,45 @@ interface Props {
 }
 
 const Details: React.FC<Props> = ({ id, types, hideOverlay }) => {
-  const type = id ? types.find((type) => type?.id === id) : undefined
+  const type = id ? types.find((type) => type!.id === id) : undefined
 
   return (
-    <Overlay fullScreen isVisible={!!id} onBackdropPress={hideOverlay}>
-      <>
-        <Card>
-          <Card.Title>{type?.name}</Card.Title>
-          <Card.Divider />
+    <Overlay
+      isVisible={!!id}
+      onBackdropPress={hideOverlay}
+      style={styles.overlay}
+    >
+      <View>
+        <Text h2>{type?.__typename}</Text>
+        <View style={{ padding: 16 }}>
           {type &&
-            Object.values(type).map((val: any) => {
-              return <Text key={val}>{val}</Text>
+            Object.keys(type).map((key: string) => {
+              if (key === '__typename') return null
+              return (
+                <View
+                  key={type[key]}
+                  style={{ display: 'flex', flexDirection: 'row' }}
+                >
+                  <Text style={{ fontWeight: 'bold' }}>{`${key}: `}</Text>
+                  <Text key={type[key]}>{type[key]}</Text>
+                </View>
+              )
             })}
-        </Card>
-        <Button
-          title="Overview"
-          onPress={hideOverlay}
-          buttonStyle={{ backgroundColor: 'blue' }}
-        />
-      </>
+        </View>
+
+        <Button title="Back to Overview" onPress={hideOverlay} />
+      </View>
     </Overlay>
   )
 }
+
+const styles = StyleSheet.create({
+  overlay: {
+    width: '100%',
+    height: '100%',
+    padding: 0,
+    margin: 0,
+  },
+})
 
 export default Details

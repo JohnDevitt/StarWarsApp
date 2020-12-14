@@ -1,9 +1,9 @@
 query GetTypes($search: String) {
   specieses(where: { _search: $search }, orderBy: name_ASC) {
     id
+    name
     averageLifespan
     classification
-    name
     designation
     language
     averageHeight
@@ -13,6 +13,7 @@ query GetTypes($search: String) {
   }
   vehicles(where: { _search: $search }, orderBy: name_ASC) {
     id
+    name
     model
     crew
     class
@@ -21,7 +22,6 @@ query GetTypes($search: String) {
     passengers
     manufacturer
     cargoCapacity
-    name
     consumables
     maxAtmospheringSpeed
   }
@@ -41,11 +41,11 @@ query GetTypes($search: String) {
   }
   planets(where: { _search: $search }, orderBy: name_ASC) {
     id
+    name
     population
     climate
     orbitalPeriod
     terrain
-    name
     gravity
     rotationPeriod
     surfaceWater
@@ -53,11 +53,11 @@ query GetTypes($search: String) {
   }
   starships(where: { _search: $search }, orderBy: name_ASC) {
     id
+    name
     costInCredits
     hyperdriveRating
     passengers
     cargoCapacity
-    name
     crew
     length
     manufacturer

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Modal, Text, TouchableOpacity, View } from 'react-native'
-import { Button, Header, ListItem, Overlay } from 'react-native-elements'
+import { StyleSheet, ScrollView } from 'react-native'
+import { Text, Button, ListItem, Header } from 'react-native-elements'
 import Details from './Details'
 import { GetTypesQuery, useGetTypesQuery } from './graphql/generated/output'
 
@@ -33,10 +33,10 @@ const StarshipList: React.FC<Props> = ({ search }) => {
     ...data!.vehicles,
     ...data!.persons,
     ...data!.planets,
-    ...data!.planets,
+    ...data!.starships,
   ]
   return (
-    <View>
+    <ScrollView>
       <Details
         id={visibleId}
         types={types}
@@ -48,7 +48,9 @@ const StarshipList: React.FC<Props> = ({ search }) => {
           <ListItem key={type?.id} bottomDivider>
             <ListItem.Content>
               <ListItem.Title>{type?.name}</ListItem.Title>
-              <ListItem.Subtitle>{type?.__typename}</ListItem.Subtitle>
+              <ListItem.Subtitle style={{ color: 'grey' }}>
+                {type?.__typename}
+              </ListItem.Subtitle>
             </ListItem.Content>
             <Button
               title="Details"
@@ -58,8 +60,14 @@ const StarshipList: React.FC<Props> = ({ search }) => {
           </ListItem>
         )
       })}
-    </View>
+    </ScrollView>
   )
 }
+
+const styles = StyleSheet.create({
+  overlay: {
+    width: '100%',
+  },
+})
 
 export default StarshipList
