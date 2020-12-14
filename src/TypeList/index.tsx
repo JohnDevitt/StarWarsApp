@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { StyleSheet, ScrollView } from 'react-native'
+import { StyleSheet, ScrollView, View } from 'react-native'
 import { Text, Button, ListItem, Header } from 'react-native-elements'
-import Details from './Details'
-import { GetTypesQuery, useGetTypesQuery } from './graphql/generated/output'
+import Details from '../Details'
+import { GetTypesQuery, useGetTypesQuery } from '../graphql/generated/output'
 
 interface Props {
   search: string
@@ -15,18 +15,30 @@ type ResponseType = GetTypesQuery[
   | 'planets'
   | 'starships'][number]
 
-const StarshipList: React.FC<Props> = ({ search }) => {
+const TypeList: React.FC<Props> = ({ search }) => {
   const [visibleId, setVisibleId] = useState<string | undefined>(undefined)
 
   const { data, loading, error } = useGetTypesQuery({
     variables: {
       search,
     },
+    fetchPolicy: 'network-only',
   })
 
-  if (loading && data === undefined) return <Text>...loading</Text>
-  if (loading && data?.starships === undefined) return <Text>...loading 2</Text>
-  if (error) return <Text>{error.message}</Text>
+  if (loading) {
+    return (
+      <View style={styles.centeredView}>
+        <Text>...loading</Text>
+      </View>
+    )
+  }
+
+  if (error)
+    return (
+      <View style={styles.centeredView}>
+        <Text>{error.message}</Text>
+      </View>
+    )
 
   const types = [
     ...data!.specieses,
@@ -35,6 +47,15 @@ const StarshipList: React.FC<Props> = ({ search }) => {
     ...data!.planets,
     ...data!.starships,
   ]
+
+  if (types.length === 0) {
+    return (
+      <View style={styles.centeredView}>
+        <Text>...no types found</Text>
+      </View>
+    )
+  }
+
   return (
     <ScrollView>
       <Details
@@ -65,9 +86,14 @@ const StarshipList: React.FC<Props> = ({ search }) => {
 }
 
 const styles = StyleSheet.create({
-  overlay: {
+  centeredView: {
     width: '100%',
+    height: '80%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
   },
 })
 
-export default StarshipList
+export default TypeList

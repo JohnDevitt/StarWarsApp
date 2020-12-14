@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { registerRootComponent } from 'expo'
 import { SafeAreaView, StyleSheet, View } from 'react-native'
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client'
-import StarshipList from './StarshipList'
+import TypeList from './TypeList'
 import { ThemeProvider, SearchBar, Header } from 'react-native-elements'
 import { StatusBar } from 'expo-status-bar'
 
@@ -37,7 +37,7 @@ function App() {
               value={search}
             />
           </View>
-          <StarshipList search={search} />
+          <TypeList search={search} />
         </SafeAreaView>
         <StatusBar style="auto" />
       </ApolloProvider>
