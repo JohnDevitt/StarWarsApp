@@ -69,14 +69,14 @@ const TypeList: React.FC<Props> = ({ search }) => {
           <ListItem key={type?.id} bottomDivider>
             <ListItem.Content>
               <ListItem.Title>{type?.name}</ListItem.Title>
-              <ListItem.Subtitle style={{ color: 'grey' }}>
+              <ListItem.Subtitle style={styles.subtitle}>
                 {type?.__typename}
               </ListItem.Subtitle>
             </ListItem.Content>
             <Button
               title="Details"
               onPress={() => setVisibleId(type?.id)}
-              buttonStyle={{ backgroundColor: 'red' }}
+              buttonStyle={styles.button}
             />
           </ListItem>
         )
@@ -93,6 +93,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
+  },
+  button: {
+    backgroundColor: 'red',
+  },
+  subtitle: {
+    color: 'grey',
   },
 })
 

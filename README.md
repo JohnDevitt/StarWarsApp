@@ -2,13 +2,19 @@
 
 How to run the application
 
-    yarn && yarn generate # First, build the graphql stuff
-    yarn run ios # Next, run the application on a device
-    yarn run android # Android works too, make sure a emulator is up and running first though.
+### Build the app
+
+`yarn && yarn generate # First, build the GraphQL stuff`
+
+### Run on an emulator
+
+`yarn run ios # Next, run the application on a device`
+
+`yarn run android # Android works too, make sure a emulator is up and running first though.`
 
 # Is this application "production ready"?
 
-It is not! A lot more work could go into this in order to get it ready for the general public. Amoung other thigs, I would want the following before going live:
+It is not! A lot more work could go into this to get it ready for the general public. Among other things, I would want the following before going live:
 
 - A CI pipeline
 - Internationalisation
@@ -16,8 +22,7 @@ It is not! A lot more work could go into this in order to get it ready for the g
 - Performance tests
 - Tracking and monitoring
 - Error reporting
-
-... The list goes on
+  ... The list goes on
 
 # Did I build the application to specification?
 
@@ -25,48 +30,47 @@ Almost, let's go through the list.
 
 ## Overview
 
-_"Create an overview with a list of Star Wars types like starship, planets and persons. I created list with five out of seven types."_
+    Create an overview with a list of Star Wars types like starship, planets and persons. I created a list with five out of seven types.
 
-The film and asset types seemed to be more _meta_ types so I assumed they were unnecessary. However, from the code it shuold be obvious how would expand the app to include these types
+The film and asset types seemed to be more meta types so I assumed they were unnecessary. However, from the code, it should be obvious how would expand the app to include these types.
 
-_"Everything can be in **one list**, **grouped by type** and **alphabetic**."_
+    Everything can be in one list, grouped by type and alphabetic.
 
-There is a single list, initally grouped by types and subsequently sorted alphabetically
+There is a single list, initially grouped by types and subsequently sorted alphabetically.
 
-_"The list should show the \_name_ and _type_ of the object and have a _red button_ with a _link to a detail view_ for that item."\_
+    The list should show the name and type of the object and have a red button with a link to a detail view for that item."
 
 The name and type are visible. There is a 'Details' button. It links to a details view and it is red.
 
 ## Search
 
-_"Above the list, create a simple text search. Entering text should filter out not matching item from the
-list."_
+    Above the list, create a simple text search. Entering text should filter out not matching item from the list.
 
-There is a search function above the list. It uses the **\_search** paramater in the graphql query to filter out text
+There is a search function above the list. It uses the **\_search** parameter in the GraphQL query to filter out text.
 
 ## Details
 
-_"The detail view should show all available information you have for that type of item."_
+    The detail view should show all available information you have for that type of item.
 
 The detail view shows all of the additional data for a given item and handles some edge cases like lists gracefully
 
-_"Try to reuse the item component form the overview, but the button should have a link to the overview instead and a different color (e.g. blue)."_
+    Try to reuse the item component form the overview, but the button should have a link to the overview instead and a different color (e.g. blue).
 
-I did _not_ reuse the item component because it seemed a bit pedantic. `react-native-elements` makes it realtively easy to create a list, abstracting the ListItem component _again_ would've served no purpose
+I did **not** reuse the item component because it seemed a bit pedantic. `react-native-elements` makes it relatively easy to create a list, abstracting the ListItem component _again_ would've served no purpose.
 
-_"The content of the detail view should be vertical centered aligned."_
+    The content of the detail view should be vertical centered aligned.
 
-The details are vertical and center aligned
+The details are vertical and centre-aligned
 
 ## Layout & Errors
 
-_"Make sure you're using a good layout, simple/modern colors. It's best to stick with current standards."_
+    Make sure you're using a good layout, simple/modern colors. It's best to stick with current standards.
 
-Unless specified, I simply stuck with the default colors from the component library.
+Unless specified, I simply stuck with the default colours from the component library.
 
-_"Your code should handle potential errors gracefully."_
+    Your code should handle potential errors gracefully.
 
-I could spend a lot of time on error handling, but in essence there's four cases that I've handled:
+I could spend a lot of time on error handling, but in essence, there are four cases that I've handled:
 
 - Loading state
 - Generic error state
@@ -75,9 +79,9 @@ I could spend a lot of time on error handling, but in essence there's four cases
 
 ## Testing
 
-_"We'd love to see some testing automation, that would demonstrate the code works correctly and handles anything that might be thrown at it."_
+    We'd love to see some testing automation, that would demonstrate the code works correctly and handles anything that might be thrown at it.
 
-I've added unit tests to the List and Detail views. I tested the components with Jest and react-native-testing-libraray. I set the coverage threshold to be 100% setup husky so that no one can allow the coverage to drop on commit.
+I've added unit tests to the List and Detail views. I tested the components with Jest and `react-native-testing-library`. I set the coverage threshold to be 100% setup husky so that no one can allow the coverage to drop on commit.
 
 Testing is an area where a LOT of expansion can happen:
 
