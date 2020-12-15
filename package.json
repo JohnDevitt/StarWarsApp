@@ -6,8 +6,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "lint": "eslint src/",
-    "graphql": "graphql-codegen --config codegen.yml",
+    "lint": "prettier --write . && eslint src/",
     "generate": "graphql-codegen --config codegen.yml",
     "test": "jest --coverage"
   },
@@ -52,7 +51,7 @@
   "private": true,
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
+      "pre-commit": "lint-staged && yarn test",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
