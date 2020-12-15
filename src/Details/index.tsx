@@ -42,7 +42,7 @@ const Details: React.FC<Props> = ({ id, types, hideOverlay }) => {
               if (key === 'homeplanet')
                 return (
                   <ListItem key={`homeplanet-${type[key].name}`}>
-                    <ListItem.Content>
+                    <ListItem.Content style={styles.centerAlign}>
                       <ListItem.Title>homeplanet</ListItem.Title>
                       <ListItem.Subtitle style={styles.subtitle}>
                         {type[key].name}
@@ -55,7 +55,7 @@ const Details: React.FC<Props> = ({ id, types, hideOverlay }) => {
               if (!value) return null
               return (
                 <ListItem key={`${key}-${value}`}>
-                  <ListItem.Content>
+                  <ListItem.Content style={styles.centerAlign}>
                     <ListItem.Title>{key}</ListItem.Title>
                     <ListItem.Subtitle style={styles.subtitle}>
                       {value}
@@ -80,6 +80,11 @@ const styles = StyleSheet.create({
   },
   container: {
     padding: 16,
+    width: '100%',
+  },
+  centerAlign: {
+    display: 'flex',
+    alignItems: 'center',
   },
   headerLeft: {
     color: 'white',
